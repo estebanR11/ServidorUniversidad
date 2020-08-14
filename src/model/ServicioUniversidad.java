@@ -26,10 +26,6 @@ public class ServicioUniversidad extends UnicastRemoteObject implements IServici
     private static ArrayList estudiantes = new ArrayList();   
 
 
-    public ArrayList getEstudiantes()
-    {
-        return estudiantes;
-    }
 
     @Override
     public void setEstudiantes(ArrayList pEstudiantes) {
@@ -165,4 +161,10 @@ public class ServicioUniversidad extends UnicastRemoteObject implements IServici
         
         return centinela;
 }
+
+    @Override
+    public ArrayList getEstudiantes() throws RemoteException {
+        return estudiantes;
+    }
+
 }
