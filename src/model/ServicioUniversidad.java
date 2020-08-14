@@ -23,8 +23,7 @@ public class ServicioUniversidad extends UnicastRemoteObject implements IServici
     {
         
     }
-    private static ArrayList estudiantes = new ArrayList();
-      
+    private static ArrayList estudiantes = new ArrayList();   
 
 
     public ArrayList getEstudiantes()
@@ -81,14 +80,15 @@ public class ServicioUniversidad extends UnicastRemoteObject implements IServici
     public Estudiante buscarEstudiantePorCodigo(String codigo)
     {
         Estudiante buscado =null;
-        
-        for(int i =0; i<estudiantes.size();i++ )            
+        for(int i =0; i<estudiantes.size() && buscado == null;i++ )            
         {
             Estudiante actual = (Estudiante)estudiantes.get(i);
+            
             if(actual.getCodigo().equals(codigo))
             {
                 buscado = actual;
             }
+            
         }
         return buscado;
     }
@@ -146,5 +146,23 @@ public class ServicioUniversidad extends UnicastRemoteObject implements IServici
         
         return centinela;
     }
-    
+     
+    public boolean existeCedula( int pCedula )
+    {
+        boolean centinela = false;
+        
+        for(int i = 0; i < estudiantes.size() && !centinela; i++)
+        {
+            Estudiante estu = (Estudiante) estudiantes.get(i);
+            int auxCod = estu.getCedula();
+            
+            if(pCedula == auxCod)
+            {
+                centinela = true;
+                
+            }
+        }
+        
+        return centinela;
+}
 }
